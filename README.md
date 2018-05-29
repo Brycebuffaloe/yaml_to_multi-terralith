@@ -31,20 +31,20 @@ Open the network.yaml file and walk through how the network is setup.
 ⋅⋅* A DNS server is defined for two of the networks
 
 Each "network:" entry represents a VPC in google cloud
-'''
+```
 network: 172.16.0.0/24
 network: 172.16.20.0/24
 network: 172.16.30.0/24
-'''
+```
 Use the network and cidr to create the 3 vpc's.
 Example:
-'''
+```
 //Create VPC
 resource "google_compute_network" "vpc1" {
   name = "vpc1"
   auto_create_subnetworks = "false"
 }
-'''
+```
 
 ### Virtual Machine Yaml
 
