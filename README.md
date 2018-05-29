@@ -22,9 +22,29 @@ There is no direct conversion of yaml to [HCL](https://github.com/hashicorp/hcl)
 | Routes        | 
 | VM            |
 
-Templates can be created based on the need of the user.  Logical segmentation of environments or specific systems can also be used as templates for terraform script creation.  
+Templates can be created based on the need of the user.  Logical segmentation of environments or specific systems can also be used as templates for terraform script creation. The sample templates will be used to translate on prem environments to google cloud. 
 
 ### Network Yaml
+Open the network.yaml file and walk through how the network is setup.
+⋅⋅* There are 3 networks being created on top of a management network (10.0.0.0)
+⋅⋅* There are a number of network routes defined within each of these networks.
+⋅⋅* A DNS server is defined for two of the networks
+
+Each "network:" entry represents a VPC in google cloud
+'''
+network: 172.16.0.0/24
+network: 172.16.20.0/24
+network: 172.16.30.0/24
+'''
+Use the network and cidr to create the 3 vpc's.
+Example:
+'''
+//Create VPC
+resource "google_compute_network" "vpc1" {
+  name = "vpc1"
+  auto_create_subnetworks = "false"
+}
+'''
 
 ### Virtual Machine Yaml
 
