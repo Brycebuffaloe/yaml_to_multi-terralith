@@ -36,7 +36,7 @@ network: 172.16.0.0/24
 network: 172.16.20.0/24
 network: 172.16.30.0/24
 ```
-Use the network and cidr to create the 3 vpc's.
+Use the net_vpc template and create 2 additional vpc's and save the file.
 Example:
 ```
 //Create VPC
@@ -45,6 +45,31 @@ resource "google_compute_network" "vpc1" {
   auto_create_subnetworks = "false"
 }
 ```
+Open the net_subnet template and create a subnet for each network with the listed IP and CIDR block in the file.
+Example:
+```
+//Create Subnet dependant on vpc
+resource "google_compute_subnetwork" "subnet1" {
+  name          = "subnet1"
+  ip_cidr_range = "172.16.0.0/24"
+  network       = "m4m1"
+  depends_on    = ["google_compute_network.vpc1"]
+  region        = "${var.region}"
+}
+```
+Open the net_routes template and create a subnet for each network with the listed IP and CIDR block in the file.
+Example:
+```
+//Create Subnet dependant on vpc
+resource "google_compute_subnetwork" "subnet-1" {
+  name          = "sub1"
+  ip_cidr_range = "172.16.0.0/24"
+  network       = "vpc1"
+  depends_on    = ["google_compute_network.vpc1"]
+  region        = "${var.region}"
+}
+```
+
 
 ### Virtual Machine Yaml
 
