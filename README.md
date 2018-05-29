@@ -10,7 +10,7 @@ Currently working...
 3. [Install GcloudSDK](https://www.terraform.io/intro/getting-started/install.html)
 
 ## Translating Yaml into Terraform(HCL)
-Basic templates for Provider, VPCs, Subnets, Routes, and VM or in the repo.  Clone or download the repo and they can be found in the "templates" folder and open them in a text editor.
+Basic templates for Provider, VPCs, Subnets, Routes, and VMs.  Clone or download the repo, and they can be found in the "templates" folder and open them in a text editor.
 
 There is no direct conversion of yaml to [HCL](https://github.com/hashicorp/hcl)(HashiCorp Configuration Language) that will provide you with a finished production ready formated terraform script.  In this excercise we will convert sample yaml files to hcl .  Templates are broken by resource types up so they are easily reusable and the main terraform file is easily managed.
 
@@ -36,7 +36,7 @@ network: 172.16.0.0/24
 network: 172.16.20.0/24
 network: 172.16.30.0/24
 ```
-Use the net_vpc template and create 2 additional vpc's and save the file.
+Use the net_vpc template and create two additional vpc's and save the file.
 Example:
 ```
 //Create VPC
@@ -70,9 +70,24 @@ resource "google_compute_subnetwork" "subnet-1" {
 }
 ```
 
-
 ### Virtual Machine Yaml
+Open the vm.yaml file in the repo and review the file and notice that we are creating 
 
+```
+VM1:
+        template: 'Debian_machine'
+        startOrder: 1
+        networks:
+            "internal":
+                   type: dhcp
+                   mask: 255.255.0.0
+                   adapter: 'Network adapter 1'
+            "control":
+                   type: static
+                   ip: 10.0.0.5
+                   mask: 255.255.0.0
+                   adapter: 'Network adapter 2'
+```
 
 ## Terralith_Structure
 
