@@ -113,7 +113,7 @@ Example:
 //MACHINE NAME
 resource "google_compute_instance" "vm1 " {
   name         = "vm1 "
-  machine_type = "n1-standard-4"
+  machine_type = "n1-standard-2"
   zone         = "${var.zone}"
   depends_on   = ["google_compute_subnetwork.subnet3"]
   tags = ["terraform_deploy"]
@@ -153,7 +153,9 @@ resource "google_compute_instance" "vm1 " {
 ## Terralith_Structure
 In order to manage the cloud resources without searching through one large file I have seperated them out in the .tf files focused on specific resources.  The terralith structure is a simple yet repeatable structure and approach that allows you to organize and group resources as you decide.  For this excercise we will be using the files previously created for vpc, routes, subnets, and vms (Terralith structure = logical groupings of resources or environments test/dev)
 
-Inside the terraform folder you will also see the variables.tf file which contains the variable your terraform script utlize for region, zone, etc.  This file must be in the same directory as your terraform files.  The terraform.tfvars file is also located in this folder and contains the declared values of these variables.  This format allow you to change the region you would like to deploy your resources to by making a single change that will echo through the terraform files.  
+Inside the terraform folder you will also see the variables.tf file which contains the variable your terraform script utlizes for region, zone, etc.  This file must be in the same directory as your terraform files. If you would like to add variables to your terraform script this is where you would declare them.  Please review this file
+
+The terraform.tfvars file is also located in this folder and contains the set values of these variables.  This format allows you to change the region, zone, image, or ect you would like to deploy your resources with or to by making a single change that will echo through the terraform files.  There are default values inside of this file, please review them and change if you would like.
 
 
 ## Deploying to GCP
@@ -176,15 +178,51 @@ Replace "sa_name" with the service account name you have in mind.  Make sure you
 gcloud iam service-accounts keys create ~/tfkey.json \
     --iam-account sa_name@PROJECT-ID.iam.gserviceaccount.com
 ```
-Replace "sa_name" with the service account name you used for the previous step.  The key will be downloaded to your machine and should be placed into the same directory as the the terraform scripts (this is not suggested for production but will be utilized for this exercise, for production purposes these should be managed in a gcs bucket where the key is encrypted at rest).  Look in the terraform.tfvars file and notice the creditials variable is set to look for tfkey.json in the local directory.
+Replace "sa_name" with the service account name you used for the previous step and replace "pj_name" with your gcp project name.  The key will be downloaded to your machine and should be placed into the same directory as the the terraform scripts (this is not suggested for production but will be utilized for this exercise, for production purposes these should be managed in a gcs bucket where the key is encrypted at rest).  Look in the terraform.tfvars file and notice the creditials variable is set to look for tfkey.json in the local directory.
 
 ```
-gcloud projects add-iam-policy-binding my-project-123 \
-    --member serviceAccount:my-sa-123@my-project-123.iam.gserviceaccount.com --role roles/editor
-```
-Replace 
-
-
-## Managing Terraform within GCP 
+gcloud projects add-iam-policy-binding pj_name \
+    --member serviceAccount:sn_name@pj_name.iam.gserviceaccount.com --role roles/editor
+``` 
 
 ## Deploying your scripts and script management
+
+Once you have your terraform files and json key in the same directory we can deploy the scripted infrastructure to google cloud.  
+
+Open a terminal window and cd to the directory the terraform files are located in and issue the following commands.
+
+1.  Validate you file and look for syntax errors:
+```
+terraform validate
+```
+2.  Preview the Terraform changes:
+```
+terraform plan
+```
+
+Note:  Correct any errors that present themselves before proceeding
+
+3.  Deploy the Terraform scripts:
+```
+terraform apply
+```
+
+Note: You will need to confirm with yes.
+
+4.  If all goes well you should see: (update after lab)
+```
+Apply complete! Resources:  added,  changed,  destroyed.
+```
+
+## Confirm Deployment
+1. [Log into google cloud console](https://console.cloud.google.com/)
+2. Navigate through the left side drop down to "Networks VPC" and confirm your 3 vpc's have been created.
+   a. Within each vpc look at the routes you created as well.
+3. Navigate through the left side drop down to "Compute Engine" and confirm your 3 vm's have been created.
+4. Your terraform deployment is successful if you have found all of these resources.
+
+##  Destroy Resources with Terraform
+```
+terraform destroy
+```
+Note: You will need to confirm with yes.
