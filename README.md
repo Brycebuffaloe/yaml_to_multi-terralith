@@ -87,7 +87,7 @@ resource "google_compute_route" "net_route_vpc1" {
 ```
 
 ### Virtual Machine Yaml
-Open the vm.yaml file in the repo and review the file and notice that we are creating 3 virtual machines, each with two network interfaces.  The first machine has a dhcp network adapter which means the address is not static and is based on the avaialble address pool of the network we assign it to.  All 10. addresses will be utilizing the default subnet that exists on gcp projects. 
+Open the vm.yaml file in the repo and review the file and notice that we are creating 3 virtual machines, each with two network interfaces.  The first machine has a dhcp network adapter which means the address is not static and is based on the avaialble address pool of the network we assign it to.  All 10. addresses will be utilizing the default subnet that exists on gcp projects. Make sure to place each vm on one of you three subnets with an IP that exisits within that range under the "network interface" section.
 
 ```yaml
 //Create a virtual machine
@@ -127,15 +127,9 @@ resource "google_compute_instance" "vm1 " {
   scratch_disk {}
 
   network_interface {
-    subnetwork = "default"
+    subnetwork         = "subnet-1"
     access_config      {}
-    address            = ""
-  }
-
-  network_interface {
-    subnetwork         = "default"
-    access_config      {}
-    address            = "10.138.0.5"
+    address            = "172.16.0.10"
   }
 
   can_ip_forward = true 
