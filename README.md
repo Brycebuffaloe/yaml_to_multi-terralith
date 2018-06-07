@@ -2,7 +2,7 @@
 Move from on prem deployment of infrastructure with yaml to a multi-terralith architecture in Google Cloud Platform.
 
 ## Status
-Currently working...
+In Review
 
 ## Prep
 1. [Install Terraform](https://www.terraform.io/intro/getting-started/install.html)
