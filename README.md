@@ -185,25 +185,31 @@ Once you have your terraform files and json key in the same directory we can dep
 
 Open a terminal window and cd to the directory the terraform files are located in and issue the following commands.
 
-1.  Validate you file and look for syntax errors:
+1.  initalize terraform to grab the correct plugins:
+```
+terraform init
+```
+
+2.  Validate you file and look for syntax errors:
 ```
 terraform validate
 ```
-2.  Preview the Terraform changes:
+
+3.  Preview the Terraform changes:
 ```
 terraform plan
 ```
 
 Note:  Correct any errors that present themselves before proceeding
 
-3.  Deploy the Terraform scripts:
+4.  Deploy the Terraform scripts:
 ```
 terraform apply
 ```
 
 Note: You will need to confirm with yes.
 
-4.  If all goes well you should see: (update after lab)
+5.  If all goes well you should see: (update after lab)
 ```
 Apply complete! Resources:  added,  changed,  destroyed.
 ```
