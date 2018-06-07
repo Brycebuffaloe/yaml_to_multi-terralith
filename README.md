@@ -18,7 +18,7 @@ There is no direct conversion of yaml to [HCL](https://github.com/hashicorp/hcl)
 
 Templates can be created based on the need of the user.  Logical segmentation of environments or specific systems can also be used as templates for terraform script creation. The sample templates will be used to translate on prem environments to google cloud. 
 
-Note:  The provider template should be left as is unless you plan to deploy to another cloud platform.
+Note:  The provider template should be left as is unless you plan to deploy to another cloud platform.  I have also included the completed files for reference inside of the completed folder.
 
 ### Network Yaml
 Open the network.yaml file and walk through the network configuration and descriptions.  There are 3 networks being created on top of a management network (10.0.0.0).  There are a number of network routes defined within each of these networks. 
