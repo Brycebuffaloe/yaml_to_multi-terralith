@@ -81,7 +81,8 @@ resource "google_compute_subnetwork" "subnet3" {
 ```
 
 Open the net_routes.tf file and create the routes within each "subnetwork" (these are the subnets you just created) listed in the network.yaml file.  The routes are listed below the network and labeled as routes with a "dest" and "gateway".  
-Example from network.yaml:
+
+Example:
 ```yaml
 networks:
   - network: 172.16.0.0/24
@@ -149,19 +150,20 @@ Open the vm.yaml file in the repo and review the file and notice that we are cre
 
 Example:
 ```yaml
-//Create a virtual machine
-VM1:
+vms:
+    VM1:
         template: 'Debian_machine'
         startOrder: 1
         networks:
-            "internal":
-                   type: dhcp
-                   mask: 255.255.0.0
-                   adapter: 'Network adapter 1'
             "control":
                    type: static
                    ip: 10.138.0.5
                    mask: 255.255.0.0
+                   adapter: 'Network adapter 1'
+            "172_16_0":
+                   type: static
+                   ip: 172.16.0.11
+                   mask: 255.255.255.0
                    adapter: 'Network adapter 2'
 ```
 
