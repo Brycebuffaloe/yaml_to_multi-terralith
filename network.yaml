@@ -1,0 +1,16 @@
+networks:
+  - network: 172.16.0.0/24
+    routes:
+      - dest: 0.0.0.0/0
+        gateway: 172.16.0.11
+      - dest: 172.16.10.0/24
+        gateway: 172.16.0.10
+  - network: 172.16.20.0/24
+    routes:
+      - dest: 0.0.0.0/0
+        gateway: 172.16.20.25
+  - network: 172.16.30.0/24
+    routes:
+      - dest: 0.0.0.0/0
+        gateway: 172.16.30.25
+

@@ -1,0 +1,46 @@
+vms:
+    VM1:
+        template: 'Debian_machine'
+        startOrder: 1
+        networks:
+            "control":
+                   type: static
+                   ip: 10.138.0.5
+                   mask: 255.255.0.0
+                   adapter: 'Network adapter 1'
+            "172_16_0":
+                   type: static
+                   ip: 172.16.0.11
+                   mask: 255.255.255.0
+                   adapter: 'Network adapter 2'
+    VM2:
+        template: 'Debian_machine'
+        startOrder: 2
+        networks:
+            "control":
+                   type: static
+                   ip: 10.138.0.13
+                   mask: 255.255.0.0
+                   adapter: 'Network adapter 1'
+            "172_16_20":
+                   type: static
+                   ip: 172.16.20.11
+                   mask: 255.255.255.0
+                   adapter: 'Network adapter 2'
+
+    VM3:
+        template: 'Debian_machine'
+        startOrder: 2
+        ram: 4096
+        networks:
+            "control":
+                   type: static
+                   ip: 10.138.0.39
+                   mask: 255.255.0.0
+                   adapter: 'Network adapter 1'
+            "172_16_30":
+                   type: static
+                   ip: 172.16.30.10
+                   mask: 255.255.255.0
+                   mappable: True
+                   adapter: 'Network adapter 2'
