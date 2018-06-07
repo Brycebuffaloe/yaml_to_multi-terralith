@@ -12,11 +12,13 @@ Currently working...
 5. Clone or download the repo
 
 ## Translating Yaml into Terraform(HCL)
-Basic templates for VPCs, Subnets, Routes, and VMs are provided.  Clone or download the repo, they can be found in the "templates" folder and open them in a text editor.
+Basic templates for provider,VPCs, Subnets, Routes, and VMs are provided.  Clone or download the repo, they can be found in the "templates" folder and open them in a text editor.
 
 There is no direct conversion of yaml to [HCL](https://github.com/hashicorp/hcl)(HashiCorp Configuration Language) that will provide you with a finished production ready formated terraform script.  In this excercise we will convert sample yaml files to hcl .  Templates are broken up by resource types up so they are easily reusable and the main terraform file is easily managed.
 
 Templates can be created based on the need of the user.  Logical segmentation of environments or specific systems can also be used as templates for terraform script creation. The sample templates will be used to translate on prem environments to google cloud. 
+
+Note:  The provider template should be left as is unless you plan to deploy to another cloud platform.
 
 ### Network Yaml
 Open the network.yaml file and walk through the network configuration and descriptions.  There are 3 networks being created on top of a management network (10.0.0.0).  There are a number of network routes defined within each of these networks. 
