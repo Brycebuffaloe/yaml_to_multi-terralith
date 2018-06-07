@@ -6,7 +6,7 @@ Currently working...
 
 ## Prep
 1. [Install Terraform](https://www.terraform.io/intro/getting-started/install.html)
-2. [Create a google cloud platform account](https://cloud.google.com/free/)
+2. [Create a google cloud platform account and project](https://cloud.google.com/free/)
 3. [Install GcloudSDK](https://www.terraform.io/intro/getting-started/install.html)
 4. [Enable GCP APIs](https://support.google.com/cloud/answer/6158841?hl=en) (Enable Compute Engine API)
 5. Clone or download the repo
