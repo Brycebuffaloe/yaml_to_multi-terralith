@@ -8,8 +8,7 @@ Currently working...
 1. [Install Terraform](https://www.terraform.io/intro/getting-started/install.html)
 2. [Create a google cloud platform account](https://cloud.google.com/free/)
 3. [Install GcloudSDK](https://www.terraform.io/intro/getting-started/install.html)
-4. [Enable GCP APIs](https://support.google.com/cloud/answer/6158841?hl=en)
-    a. Enable Compute Engine API, 
+4. [Enable GCP APIs](https://support.google.com/cloud/answer/6158841?hl=en) (Enable Compute Engine API)
 5. Clone or download the repo
 
 ## Translating Yaml into Terraform(HCL)
@@ -364,6 +363,7 @@ Apply complete! Resources:  13 added,  0 changed,  0 destroyed.
 2. Navigate through the left side drop down to "Networks VPC" and confirm your 3 vpc's have been created.
    a. Within each vpc look at the routes you created as well.
 3. Navigate through the left side drop down to "Compute Engine" and confirm your 3 vm's have been created.
+   a. Explore the vm and its configuration
 4. Your terraform deployment is successful if you have found all of these resources.
 
 ##  Destroy Resources with Terraform
