@@ -83,17 +83,22 @@ resource "google_compute_subnetwork" "subnet3" {
 Open the net_routes.tf file and create the routes within each "subnetwork" (these are the subnets you just created) listed in the network.yaml file.  The routes are listed below the network and labeled as routes with a "dest" and "gateway".  
 Example from network.yaml:
 ```yaml
- networks:
+networks:
   - network: 172.16.0.0/24
     routes:
       - dest: 0.0.0.0/0
         gateway: 172.16.0.11
       - dest: 172.16.10.0/24
         gateway: 172.16.0.10
-      - dest: 172.16.20.0/24
-        gateway: 172.16.0.10
-      - dest: 172.16.30.0/24
-        gateway: 172.16.0.10
+  - network: 172.16.20.0/24
+    routes:
+      - dest: 0.0.0.0/0
+        gateway: 172.16.20.25
+  - network: 172.16.30.0/24
+    routes:
+      - dest: 0.0.0.0/0
+        gateway: 172.16.30.25
+
 ```
 
 The template below creates the first route (dest: 0.0.0.0/0 => gateway: 172.16.0.11) in subnet1 located in vpc1.  Each route will be a seperate resource.  Vpc1 containing subnet1 should have two route resources, vpc2 containing subnet2 should have one route resource, and vpc3 containing subnet3 should have one route resource.  The "gateway" address will be placed into the "next_hop_ip" section.  Each resource will need to be named uniquely on the resource line and the name line.  Once completed save the file.
